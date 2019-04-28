@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import inspect from 'object-inspect'
 
 const formatString = (string, args) => {
@@ -6,14 +7,15 @@ const formatString = (string, args) => {
 }
 
 const assert = (condition, createMessage, ...extraArgs) => {
-  if (condition)
-    return
-
   const message = (typeof createMessage === 'string')
     ? formatString(createMessage, extraArgs)
     : createMessage(extraArgs)
 
-  throw new Error(message)
+  if (condition){
+    console.log("Pass: ", message)
+  }else{
+    console.warn("Faild: ", message)
+  }
 }
 
 export default assert
